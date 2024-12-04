@@ -4,11 +4,10 @@ on:
 jobs:
   dire_bonjour:
     runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/dduportal/esgi-gitpod
+      options: --user=root
     steps:
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 23
-      - uses: actions/checkout@v4
-      - run: npm i
+      - uses: actions/checkout@v4 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
+      - run: npm clean-install
       - run: npm run lint
-      
